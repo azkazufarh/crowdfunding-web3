@@ -30,16 +30,25 @@ const CampaignDetail = () => {
 
   const handleDonate = async () => {
     setIsLoading(true);
-
-    await donate(state.pId, amount);
-
-    navigate("/");
+  
+    console.log("state.pId:", state.pId);
+    console.log("amount:", amount);
+  
+    try {
+      // Assuming the "donate" function is correctly defined and takes two arguments (pId and amount)
+      await donate(state.pId, amount);
+      navigate("/");
+    } catch (error) {
+      console.error("Error donating:", error);
+    }
+  
     setIsLoading(false);
   };
+  
 
   return (
     <div>
-      {/* {isLoading && <Loader />} */}
+      {isLoading && <Loader />}
 
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
